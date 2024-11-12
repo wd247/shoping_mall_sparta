@@ -44,6 +44,9 @@ class ShoppingMall {
 
   void showTotal() {
     print('장바구니에 $total원 어치를 담으셨네요 !');
+    if (total > 0) {
+      print('장바구니를 초기화 하려면 6을 입력해주세요');
+    }
   }
 
   void clearCart() {
