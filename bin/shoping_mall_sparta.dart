@@ -9,11 +9,11 @@ class Product {
 
 class ShoppingMall {
   List<Product> products = [
-    Product('셔츠', 45000),
-    Product('원피스', 30000),
-    Product('반팔티', 35000),
-    Product('반바지', 38000),
-    Product('양말', 5000)
+    Product('a', 45000),
+    Product('b', 30000),
+    Product('c', 35000),
+    Product('d', 38000),
+    Product('e', 5000)
   ];
   int total = 0;
 
@@ -45,6 +45,15 @@ class ShoppingMall {
   void showTotal() {
     print('장바구니에 $total원 어치를 담으셨네요 !');
   }
+
+  void clearCart() {
+    if (total == 0) {
+      print('이미 장바구니가 비었습니다.');
+    } else {
+      total = 0;
+      print('장바구니가 초기화되었습니다.');
+    }
+  }
 }
 
 void main() {
@@ -66,8 +75,16 @@ void main() {
       case '3':
         shoppingMall.showTotal();
       case '4':
-        print('이용해 주셔서 감사합니다 ~ 안녕히 가세요 !');
-        isTerminated = true;
+        print('정말 종료하시겠습니까? (5를 입력하면 종료됩니다)');
+        String? confirmInput = stdin.readLineSync();
+        if (confirmInput == '5') {
+          print('이용해 주셔서 감사합니다 ~ 안녕히 가세요 !');
+          isTerminated = true;
+        } else {
+          print('종료하지 않습니다.');
+        }
+      case '6': //'6'입력시 장바구니 초기화
+        shoppingMall.clearCart();
       default:
         print('지원하지 않는 기능입니다 ! 다시 시도해 주세요 ..');
     }
