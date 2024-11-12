@@ -15,6 +15,8 @@ class ShoppingMall {
     Product('d', 38000),
     Product('e', 5000)
   ];
+
+  List<String> cartItems = []; // 장바구니에 담긴 상품 이름
   int total = 0;
 
   void showProducts() {
@@ -33,6 +35,12 @@ class ShoppingMall {
       int count = int.parse(inputCount);
       if (count > 0) {
         total += (product.price * count);
+
+        // 추가된 코드 시작
+        for (var i = 0; i < count; i++) {
+          cartItems.add(product.name); // 상품 이름을 장바구니에 추가
+        } //추가된 코드 종료
+
         print('장바구니에 상품이 담겼어요 !');
       } else {
         print('0개보다 많은 개수의 상품만 담을 수 있어요 !');
@@ -44,10 +52,17 @@ class ShoppingMall {
 
   void showTotal() {
     print('장바구니에 $total원 어치를 담으셨네요 !');
-    if (total > 0) {
+    if (cartItems.isEmpty) {
+      print('장바구니에 담긴 상품이 없습니다.');
+    } else {
+      String items = cartItems.join(', ');
+      print('장바구니에 $items 담겨있네요. 총 $total원 입니다!');
       print('장바구니를 초기화 하려면 6을 입력해주세요');
     }
   }
+
+  //if (total > 0) {
+  //print('장바구니를 초기화 하려면 6을 입력해주세요');
 
   void clearCart() {
     if (total == 0) {
